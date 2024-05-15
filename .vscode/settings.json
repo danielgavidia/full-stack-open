@@ -1,0 +1,44 @@
+{
+  "editor.tokenColorCustomizations": {
+    "comments": "#ff9035"
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "rules": {
+      "parameter": "#92f5f5",
+      "property": "#F07178"
+    }
+  },
+  "workbench.colorCustomizations": {
+    "terminal.background": "#000000",
+    "panel.border": "#ffffff",
+    "panel.background": "#000000",
+    "sideBar.border": "#ffffff",
+    "editorGroupHeader.tabsBorder": "#ffffff",
+    "tab.activeBackground": "#367c75",
+    "sideBar.foreground": "#ffffff",
+    "tab.inactiveBackground": "#263238",
+    "tab.inactiveForeground": "#ffffff",
+    "tab.border": "#ffffff",
+    "notebook.cellBorderColor": "#ffffff",
+    "notebook.focusedEditorBorder": "#ffffff",
+    "activityBar.border": "#ffffff",
+    "titleBar.border": "#ffffff",
+    "statusBar.background": "#ffffff",
+    "statusBar.foreground": "#000000",
+    "list.inactiveSelectionBackground": "#367c75",
+    "list.inactiveSelectionForeground": "#ffffff",
+    "breadcrumb.background": "#ffffff",
+    "breadcrumb.foreground": "#000000",
+    "breadcrumb.focusForeground": "#000000",
+    "editorLineNumber.foreground": "#ffffff",
+    "editor.lineHighlightBackground": "#000000",
+    "tree.indentGuidesStroke": "#ffffff"
+  },
+  "workbench.colorTheme": "Material Theme",
+  "workbench.tree.renderIndentGuides": "always",
+  "editor.minimap.enabled": false,
+  "python.terminal.activateEnvironment": true,
+  "explorer.sortOrder": "type",
+  "workbench.panel.defaultLocation": "bottom"
+}
