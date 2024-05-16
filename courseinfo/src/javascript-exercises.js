@@ -70,3 +70,25 @@ console.log(object3);
 
 object1.address = "Helsinki";
 object1["secret number"] = 12341;
+
+// functions
+const sum = (p1, p2) => {
+  console.log(p1);
+  console.log(p2);
+  return p1 + p2;
+};
+const result = sum(1, 5);
+console.log(result);
+
+const square = (p) => {
+  console.log(p);
+  return p * p;
+};
+console.log(square(5));
+
+const square2 = (p) => p * p;
+console.log(square2(10));
+
+const test = [1, 2, 3];
+const testSquared = test.map((p) => p * p);
+console.log(testSquared);
