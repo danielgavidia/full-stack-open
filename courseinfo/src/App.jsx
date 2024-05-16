@@ -4,25 +4,24 @@ import Total from "./Total";
 
 import { useState } from "react";
 
-const Display = (props) => {
-  return <div>{props.counter}</div>;
-};
-
-const Button = (props) = {
-  return (
-    <div>
-      <button onClick={props.onClick}>
-      {props.text}
-      </button>
-    </div>
-  )
-}
+const Display = ({ counter }) => <div>{counter}</div>;
+const Button = ({ onSmash, text }) => <button onClick={onSmash}>{text}</button>;
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const increaseByOne = () => setCounter(counter + 1);
-  const decreaseByOne = () => setCounter(counter - 1)
-  const setToZero = () => setCounter(0);
+  console.log("rendering with counter value", counter);
+  const increaseByOne = () => {
+    console.log("increasing, value before", counter);
+    setCounter(counter + 1);
+  };
+  const decreaseByOne = () => {
+    console.log("increasing, value before", counter);
+    setCounter(counter - 1);
+  };
+  const setToZero = () => {
+    console.log("resetting to zero, value before", counter);
+    setCounter(0);
+  };
 
   const course = {
     name: "Half Stack application development",
@@ -46,13 +45,9 @@ function App() {
     <div>
       <div>
         <Display counter={counter} />
-        <Button
-          onClick={increaseByOne}
-          text='plus'
-          />
-      </div>
-      <div>
-        <button onClick={setToZero}>zero</button>
+        <Button onClick={increaseByOne} text="plus" />
+        <Button onClick={setToZero} text="zero" />
+        <Button onClick={decreaseByOne} text="minus" />
       </div>
       <Header course={course.name} />
       <Content parts={course.parts} />
