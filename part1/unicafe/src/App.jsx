@@ -4,16 +4,32 @@ const Button = (props) => {
   return <button onClick={props.handleClick}>{props.text}</button>;
 };
 
+const Statisticline = (props) => {
+  return (
+    <tr>
+      <td>{props.text} </td>
+      <td>{props.value}</td>
+    </tr>
+  );
+};
+
 const Statistics = (props) => {
   if (props.clicks !== 0) {
     return (
       <>
-        <p>good {props.good}</p>
-        <p>neutral {props.neutral}</p>
-        <p>bad {props.bad}</p>
-        <p>all {props.total}</p>
-        <p>average {props.score / props.total}</p>
-        <p>positive {(props.good / props.total) * 100} %</p>
+        <table>
+          <tbody>
+            <Statisticline text={"good"} value={props.good} />
+            <Statisticline text={"neutral"} value={props.neutral} />
+            <Statisticline text={"bad"} value={props.bad} />
+            <Statisticline text={"all"} value={props.total} />
+            <Statisticline text={"average"} value={props.score / props.total} />
+            <Statisticline
+              text={"positive"}
+              value={((props.good / props.total) * 100).toString().concat(" %")}
+            />
+          </tbody>
+        </table>
       </>
     );
   }
@@ -22,17 +38,11 @@ const Statistics = (props) => {
 
 const App = () => {
   const [good, setGood] = useState(0);
-  console.log(good);
   const [neutral, setNeutral] = useState(0);
-  console.log(neutral);
   const [bad, setBad] = useState(0);
-  console.log(bad);
   const [total, setTotal] = useState(0);
-  console.log(total);
   const [score, setScore] = useState(0);
-  console.log(score);
   const [clicks, setClicks] = useState(0);
-  console.log(clicks);
 
   const handleSetGood = () => {
     const updatedGood = good + 1;
