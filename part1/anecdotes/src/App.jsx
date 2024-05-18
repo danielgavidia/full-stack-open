@@ -28,7 +28,6 @@ const App = () => {
   });
 
   const [anecdoteIndex, setAnecdoteIndex] = useState(0);
-  const [anecdoteVotes, setAnecdoteVotes] = useState(0);
   const [anecdoteObj, setAnecdoteObj] = useState(anecdoteObject);
   console.log(anecdoteObj);
 
@@ -45,12 +44,29 @@ const App = () => {
     setAnecdoteIndex(updatedAnecdoteIndex);
   };
 
+  const getAnecdoteMostVotes = (object) => {
+    let maxKey = null;
+    let maxVotes = -Infinity;
+
+    for (const [key, obj] of Object.entries(object)) {
+      if (obj.votes > maxVotes) {
+        maxVotes = obj.votes;
+        maxKey = key;
+      }
+    }
+    console.log(maxKey);
+    return maxKey;
+  };
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdoteObj[anecdoteIndex]["value"]}</p>
       <p>has {anecdoteObj[anecdoteIndex]["votes"]} votes</p>
       <ButtonVote handleClick={handleVote} />
       <ButtonNextAnecdote handleClick={handleNextAnecdote} />
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdoteObj[getAnecdoteMostVotes(anecdoteObj)]["value"]}</p>
     </div>
   );
 };
