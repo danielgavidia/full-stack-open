@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const ButtonVote = () => {
-  return <button>vote</button>;
+const ButtonVote = (props) => {
+  return <button onClick={props.handleClick}>vote</button>;
 };
 const ButtonNextAnecdote = (props) => {
   return <button onClick={props.handleClick}>next anecdote</button>;
@@ -28,22 +28,28 @@ const App = () => {
   });
 
   const [anecdoteIndex, setAnecdoteIndex] = useState(0);
+  const [anecdoteVotes, setAnecdoteVotes] = useState(0);
   const [anecdoteObj, setAnecdoteObj] = useState(anecdoteObject);
   console.log(anecdoteObj);
 
   const handleVote = () => {
-    console.log();
+    const updatedAnecdoteObj = { ...anecdoteObj };
+    const updatedVotes = updatedAnecdoteObj[anecdoteIndex]["votes"] + 1;
+    updatedAnecdoteObj[anecdoteIndex]["votes"] = updatedVotes;
+    setAnecdoteObj(updatedAnecdoteObj);
   };
 
   const handleNextAnecdote = () => {
-    const newAnecdoteIndex = Math.floor(Math.random() * anecdotes.length);
-    console.log(newAnecdoteIndex);
-    setAnecdoteIndex(newAnecdoteIndex);
+    const updatedAnecdoteIndex = Math.floor(Math.random() * anecdotes.length);
+    console.log(updatedAnecdoteIndex);
+    setAnecdoteIndex(updatedAnecdoteIndex);
   };
 
   return (
     <div>
-      <p>{anecdotes[anecdoteIndex]}</p>
+      <p>{anecdoteObj[anecdoteIndex]["value"]}</p>
+      <p>has {anecdoteObj[anecdoteIndex]["votes"]} votes</p>
+      <ButtonVote handleClick={handleVote} />
       <ButtonNextAnecdote handleClick={handleNextAnecdote} />
     </div>
   );
