@@ -4,9 +4,12 @@ const Course = ({ name, exercises }) => {
   console.log(name);
   console.log(exercises);
   return (
-    <li>
-      {name} {exercises}
-    </li>
+    <>
+      <div>
+        {name} {exercises}
+      </div>
+      <br />
+    </>
   );
 };
 
