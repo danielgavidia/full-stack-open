@@ -24,9 +24,12 @@ const App = () => {
   };
   return (
     <>
-      {course.parts.map((part) => (
-        <Course key={part.id} props={part} />
-      ))}
+      <h1>{course.name}</h1>
+      <ul>
+        {course.parts.map((part) => (
+          <Course key={part.id} name={part.name} exercises={part.exercises} />
+        ))}
+      </ul>
     </>
   );
 };

@@ -1,16 +1,17 @@
 import propTypes from "prop-types";
 
-const Course = (props) => {
+const Course = ({ name, exercises }) => {
+  console.log(name);
+  console.log(exercises);
   return (
-    <li key={props.id}>
-      {props.content} {props.exercises}
+    <li>
+      {name} {exercises}
     </li>
   );
 };
 
 Course.propTypes = {
-  id: propTypes.number.isRequired,
-  content: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
   exercises: propTypes.number.isRequired,
 };
 
