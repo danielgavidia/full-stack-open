@@ -1,21 +1,24 @@
 import propTypes from "prop-types";
+import Part from "./Part";
 
-const Course = ({ name, exercises }) => {
-  console.log(name);
-  console.log(exercises);
+const Course = ({ name, parts }) => {
+  const total = parts.map((i) => i.exercises).reduce((s, p) => s + p, 0);
   return (
     <>
+      <h2>{name}</h2>
       <div>
-        {name} {exercises}
+        {parts.map((part) => (
+          <Part key={part.id} name={part.name} exercises={part.exercises} />
+        ))}
       </div>
-      <br />
+      <h4>total of {total} exercises</h4>
     </>
   );
 };
 
 Course.propTypes = {
   name: propTypes.string.isRequired,
-  exercises: propTypes.number.isRequired,
+  parts: propTypes.object.isRequired,
 };
 
 export default Course;
