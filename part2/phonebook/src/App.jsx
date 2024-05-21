@@ -1,18 +1,7 @@
 import { useState } from "react";
-import propTypes from "prop-types";
-
-const Person = ({ name, number }) => {
-  return (
-    <div>
-      {name} {number}
-    </div>
-  );
-};
-
-Person.propTypes = {
-  name: propTypes.string.isRequired,
-  number: propTypes.string.isRequired,
-};
+import Person from "./components/Person";
+import AddForm from "./components/AddForm";
+import Filter from "./components/Filter";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -62,21 +51,15 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with <input value={query} onChange={handleFilterChange} />
-      </div>
+      <Filter query={query} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <AddForm
+        addPerson={addPerson}
+        newName={newName}
+        newNumber={newNumber}
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
       <div>
         {filteredPersons.map((person) => (
