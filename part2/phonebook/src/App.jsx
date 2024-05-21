@@ -1,12 +1,18 @@
 import { useState } from "react";
+import propTypes from "prop-types";
 
-const Person = ({ props }) => {
-  return <div>{props.name}</div>;
+const Person = ({ name }) => {
+  console.log(name);
+  return <div>{name}</div>;
+};
+
+Person.propTypes = {
+  name: propTypes.string.isRequired,
 };
 
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas", id: 1 }]);
-  const [newName, setNewName] = useState("...");
+  const [newName, setNewName] = useState("...enter new name");
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -37,7 +43,7 @@ const App = () => {
       <h2>Numbers</h2>
       <div>
         {persons.map((person) => (
-          <Person key={person.id} props={person} />
+          <Person key={person.id} name={person.name} />
         ))}
       </div>
     </div>
