@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Person from "./components/Person";
 import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
+
+import personService from "./services/persons";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("...enter new name");
   const [newNumber, setNewNumber] = useState("...enter new number");
-  const [query, setQuery] = useState("...");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
-    console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      console.log("promise fulfilled");
+    personService.getAll().then((response) => {
       setPersons(response.data);
     });
   }, []);
-  console.log(persons);
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -30,9 +28,16 @@ const App = () => {
     if (personNames.includes(personObject.name)) {
       alert(`${personObject.name} is already added to the phonebook`);
     } else {
-      setPersons(persons.concat(personObject));
-      setNewName("");
-      setNewNumber("");
+      personService
+        .create(personObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
