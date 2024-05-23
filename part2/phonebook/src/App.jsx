@@ -22,7 +22,7 @@ const App = () => {
     const personObject = {
       name: newName,
       number: newNumber,
-      id: persons.length + 1,
+      id: (persons.length + 1).toString(),
     };
     const personNames = persons.map((i) => i.name);
     if (personNames.includes(personObject.name)) {
@@ -41,6 +41,18 @@ const App = () => {
     }
   };
 
+  const handleDeletePerson = (id) => {
+    personService
+      .deletePerson(id)
+      .then((res) => {
+        console.log(res);
+        setPersons(persons.filter((p) => p.id !== id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const handleNameChange = (event) => {
     setNewName(event.target.value);
   };
@@ -56,7 +68,6 @@ const App = () => {
   const filteredPersons = persons.filter((i) =>
     i["name"].toLowerCase().startsWith(query.toLowerCase())
   );
-  console.log(filteredPersons);
 
   return (
     <div>
@@ -73,7 +84,13 @@ const App = () => {
       <h2>Numbers</h2>
       <div>
         {filteredPersons.map((person) => (
-          <Person key={person.id} name={person.name} number={person.number} />
+          <Person
+            key={person.id}
+            id={person.id}
+            name={person.name}
+            number={person.number}
+            handleDeletePerson={handleDeletePerson}
+          />
         ))}
       </div>
     </div>
