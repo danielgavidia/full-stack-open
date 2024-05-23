@@ -31,7 +31,7 @@ const App = () => {
       personService
         .create(personObject)
         .then((returnedPerson) => {
-          setPersons(persons.concat(returnedPerson));
+          setPersons(persons.concat(returnedPerson.data));
           setNewName("");
           setNewNumber("");
         })
@@ -56,6 +56,7 @@ const App = () => {
   const filteredPersons = persons.filter((i) =>
     i["name"].toLowerCase().startsWith(query.toLowerCase())
   );
+  console.log(filteredPersons);
 
   return (
     <div>
