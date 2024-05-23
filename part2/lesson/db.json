@@ -24,6 +24,11 @@
       "id": "9805",
       "content": "yet another test",
       "important": true
+    },
+    {
+      "id": "caac",
+      "content": "include a new note",
+      "important": true
     }
   ]
 }
