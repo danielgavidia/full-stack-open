@@ -46,12 +46,14 @@ const App = () => {
           console.log(error);
         });
     } else {
+      console.log(personObject);
       personService
         .create(personObject)
         .then((returnedPerson) => {
           setPersons(persons.concat(returnedPerson.data));
           setNewName("");
           setNewNumber("");
+          setMessagePerson(newName);
         })
         .catch((error) => {
           console.log(error);

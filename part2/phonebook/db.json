@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": "1"
-    },
-    {
       "name": "Ada Lovelace",
       "number": "39-44-5323523",
       "id": "2"
@@ -21,14 +16,19 @@
       "id": "4"
     },
     {
+      "id": "1",
+      "name": "Daniel 00",
+      "number": "...enter new number"
+    },
+    {
       "id": "5",
-      "name": "Daniel Gavidia",
-      "number": "000"
+      "name": "NewPerson",
+      "number": "...enter new number"
     },
     {
       "id": "6",
-      "name": "Daniel G",
-      "number": "000 000"
+      "name": "Added someone",
+      "number": "7863837175"
     },
     {
       "id": "7",
@@ -37,13 +37,23 @@
     },
     {
       "id": "8",
-      "name": "Dan",
-      "number": "...enter new number"
+      "name": "Test",
+      "number": ""
     },
     {
       "id": "9",
-      "name": "Dan df",
-      "number": "...enter new number"
+      "name": "Daniel Gavs",
+      "number": "123"
+    },
+    {
+      "id": "10",
+      "name": "Johnny",
+      "number": ""
+    },
+    {
+      "id": "11",
+      "name": "Fabiano",
+      "number": ""
     }
   ]
 }
