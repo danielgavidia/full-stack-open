@@ -8,6 +8,9 @@ const Notification = ({ person }) => {
     borderStyle: "solid",
     borderRadius: 5,
   };
+  if (person === null) {
+    return null;
+  }
   return <div style={styling}>Added {person}</div>;
 };
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Person from "./components/Person";
 import AddForm from "./components/AddForm";
 import Filter from "./components/Filter";
-import Notification from "/.components/Notification";
+import Notification from "./components/Notification";
 
 import personService from "./services/persons";
 
@@ -11,6 +11,7 @@ const App = () => {
   const [newName, setNewName] = useState("...enter new name");
   const [newNumber, setNewNumber] = useState("...enter new number");
   const [query, setQuery] = useState("");
+  const [messagePerson, setMessagePerson] = useState("");
 
   useEffect(() => {
     personService.getAll().then((response) => {
@@ -39,6 +40,7 @@ const App = () => {
           setPersons(
             persons.map((p) => (p.id !== existingObject.id ? p : res.data))
           );
+          setMessagePerson(newName);
         })
         .catch((error) => {
           console.log(error);
@@ -88,6 +90,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification person={messagePerson} />
       <Filter query={query} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>
       <AddForm
