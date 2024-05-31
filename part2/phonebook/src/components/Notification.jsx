@@ -21,16 +21,10 @@ const Notification = ({ person, addedChangedStatus, error }) => {
     return <div style={stylingNormal}>Added {person}</div>;
   } else if (addedChangedStatus === "changed") {
     return <div style={stylingNormal}>Changed {person}</div>;
-  } else if (error === "add error") {
+  } else if (error === true) {
     return (
       <div style={stylingError}>
-        {person} has already been removed from the server
-      </div>
-    );
-  } else if (error === "change error") {
-    return (
-      <div style={stylingError}>
-        {person} has already been removed from the server
+        Information of {person} has already been removed from the server
       </div>
     );
   }
@@ -39,7 +33,7 @@ const Notification = ({ person, addedChangedStatus, error }) => {
 Notification.propTypes = {
   person: propTypes.string.isRequired,
   addedChangedStatus: propTypes.string.isRequired,
-  error: propTypes.string.isRequired,
+  error: propTypes.bool.isRequired,
 };
 
 export default Notification;

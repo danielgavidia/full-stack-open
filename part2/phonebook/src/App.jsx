@@ -13,7 +13,7 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [messagePerson, setMessagePerson] = useState("");
   const [addedChangedStatus, setAddedChangedStatus] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     personService.getAll().then((response) => {
@@ -44,11 +44,11 @@ const App = () => {
           );
           setMessagePerson(newName);
           setAddedChangedStatus("changed");
-          setError("");
+          setError(false);
         })
         .catch((error) => {
           setMessagePerson(newName);
-          setError("change error");
+          setError(true);
           console.log(error);
         });
     } else {
@@ -61,11 +61,11 @@ const App = () => {
           setNewNumber("");
           setMessagePerson(newName);
           setAddedChangedStatus("added");
-          setError("");
+          setError(false);
         })
         .catch((error) => {
           setMessagePerson(newName);
-          setError("add error");
+          setError(true);
           console.log(error);
         });
     }
