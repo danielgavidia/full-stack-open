@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 
-const Notification = ({ person }) => {
+const Notification = ({ person, addedChangedStatus }) => {
   const styling = {
     color: "green",
     fontSize: 16,
@@ -10,12 +10,16 @@ const Notification = ({ person }) => {
   };
   if (person === null) {
     return null;
+  } else if (addedChangedStatus === "added") {
+    return <div style={styling}>Added {person}</div>;
+  } else if (addedChangedStatus === "changed") {
+    return <div style={styling}>Changed {person}</div>;
   }
-  return <div style={styling}>Added {person}</div>;
 };
 
 Notification.propTypes = {
   person: propTypes.string.isRequired,
+  addedChangedStatus: propTypes.string.isRequired,
 };
 
 export default Notification;

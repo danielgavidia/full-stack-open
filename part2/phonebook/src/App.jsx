@@ -12,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("...enter new number");
   const [query, setQuery] = useState("");
   const [messagePerson, setMessagePerson] = useState("");
+  const [addedChangedStatus, setAddedChangedStatus] = useState("");
 
   useEffect(() => {
     personService.getAll().then((response) => {
@@ -41,6 +42,7 @@ const App = () => {
             persons.map((p) => (p.id !== existingObject.id ? p : res.data))
           );
           setMessagePerson(newName);
+          setAddedChangedStatus("changed");
         })
         .catch((error) => {
           console.log(error);
@@ -54,6 +56,7 @@ const App = () => {
           setNewName("");
           setNewNumber("");
           setMessagePerson(newName);
+          setAddedChangedStatus("added");
         })
         .catch((error) => {
           console.log(error);
@@ -92,7 +95,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification person={messagePerson} />
+      <Notification
+        person={messagePerson}
+        addedChangedStatus={addedChangedStatus}
+      />
       <Filter query={query} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>
       <AddForm
