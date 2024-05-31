@@ -13,6 +13,7 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [messagePerson, setMessagePerson] = useState("");
   const [addedChangedStatus, setAddedChangedStatus] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     personService.getAll().then((response) => {
@@ -43,8 +44,11 @@ const App = () => {
           );
           setMessagePerson(newName);
           setAddedChangedStatus("changed");
+          setError("");
         })
         .catch((error) => {
+          setMessagePerson(newName);
+          setError("change error");
           console.log(error);
         });
     } else {
@@ -57,8 +61,11 @@ const App = () => {
           setNewNumber("");
           setMessagePerson(newName);
           setAddedChangedStatus("added");
+          setError("");
         })
         .catch((error) => {
+          setMessagePerson(newName);
+          setError("add error");
           console.log(error);
         });
     }
@@ -98,6 +105,7 @@ const App = () => {
       <Notification
         person={messagePerson}
         addedChangedStatus={addedChangedStatus}
+        error={error}
       />
       <Filter query={query} handleFilterChange={handleFilterChange} />
       <h2>add a new</h2>

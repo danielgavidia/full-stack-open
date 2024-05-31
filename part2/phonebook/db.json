@@ -36,11 +36,6 @@
       "number": ""
     },
     {
-      "id": "8",
-      "name": "Test",
-      "number": ""
-    },
-    {
       "id": "9",
       "name": "Daniel Gavs",
       "number": "...enter new number"
@@ -49,16 +44,6 @@
       "id": "10",
       "name": "Johnny",
       "number": ""
-    },
-    {
-      "id": "11",
-      "name": "Fabiano",
-      "number": ""
-    },
-    {
-      "id": "12",
-      "name": "Henry",
-      "number": "123"
     }
   ]
 }
