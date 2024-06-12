@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 // data
-[
+const data = [
     {
         id: 1,
         name: "Arto Hellas",
@@ -25,6 +25,16 @@ const app = express();
         number: "39-23-6423122",
     },
 ];
+
+// route: test
+app.get("/", (request, response) => {
+    response.send("<h1>Hello world!</h1>");
+});
+
+// route: get
+app.get("/api/entries", (request, response) => {
+    response.json(data);
+});
 
 // initialize application
 const PORT = 3000;
