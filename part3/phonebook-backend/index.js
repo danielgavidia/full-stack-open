@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 // data
-const persons = [
+let persons = [
     {
         id: 1,
         name: "Arto Hellas",
@@ -56,6 +56,19 @@ app.get("/api/persons/:id", (request, response) => {
     if (personIds.includes(personId) === true) {
         const personInfo = persons.find((p) => p.id === personId);
         response.json(personInfo);
+        response.status(200).end();
+    } else {
+        response.status(400).end();
+    }
+});
+
+// router: delete info for single id
+app.delete("/api/persons/:id", (request, response) => {
+    const personId = Number(request.params.id);
+    const personIds = persons.map((p) => p.id);
+    if (personIds.includes(personId) === true) {
+        persons = persons.filter((p) => p.id !== personId);
+        response.json(200).end();
     } else {
         response.status(400).end();
     }
