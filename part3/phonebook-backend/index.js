@@ -86,9 +86,22 @@ app.post("/api/persons/add", (request, response) => {
         name: body.name,
         number: body.number,
     };
-    persons = persons.concat(personNew);
-    response.json(personNew);
-    response.status(200).end();
+    const personNames = persons.map((p) => p.name);
+
+    if (!body.name) {
+        response.json({ error: "name missing" });
+        response.status(400).end();
+    } else if (!body.number) {
+        response.json({ error: "number missing" });
+        response.status(400).end();
+    } else if (personNames.includes(body.name)) {
+        response.json({ error: "name must be unique" });
+        response.status(400).end();
+    } else {
+        persons = persons.concat(personNew);
+        response.json(personNew);
+        response.status(200).end();
+    }
 });
 
 // initialize application
