@@ -2,6 +2,8 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
 // data
 let persons = [
     {
@@ -62,16 +64,31 @@ app.get("/api/persons/:id", (request, response) => {
     }
 });
 
-// router: delete info for single id
+// route: delete info for single id
 app.delete("/api/persons/:id", (request, response) => {
     const personId = Number(request.params.id);
     const personIds = persons.map((p) => p.id);
     if (personIds.includes(personId) === true) {
         persons = persons.filter((p) => p.id !== personId);
-        response.json(200).end();
+        response.json(personId);
+        response.status(200).end();
     } else {
         response.status(400).end();
     }
+});
+
+// route: post new entries
+app.post("/api/persons/add", (request, response) => {
+    const body = request.body;
+    const newId = Math.floor(Math.random() * 100000);
+    const personNew = {
+        id: newId,
+        name: body.name,
+        number: body.number,
+    };
+    persons = persons.concat(personNew);
+    response.json(personNew);
+    response.status(200).end();
 });
 
 // initialize application
