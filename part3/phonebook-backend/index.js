@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 // data
-const data = [
+const persons = [
     {
         id: 1,
         name: "Arto Hellas",
@@ -32,8 +32,33 @@ app.get("/", (request, response) => {
 });
 
 // route: get
-app.get("/api/entries", (request, response) => {
-    response.json(data);
+app.get("/api/persons", (request, response) => {
+    response.json(persons);
+});
+
+// route: get API info
+app.get("/info", (request, response) => {
+    const currentDate = new Date().toString();
+    const personsCount = persons.length;
+    const infoMessage = `
+<div>
+    <p>Phonebook has info for ${personsCount} people</p>
+    <p>${currentDate}<p/>
+</div>
+`;
+    response.send(infoMessage);
+});
+
+// route: get info for a single person
+app.get("/api/persons/:id", (request, response) => {
+    const personId = Number(request.params.id);
+    const personIds = persons.map((p) => p.id);
+    if (personIds.includes(personId) === true) {
+        const personInfo = persons.find((p) => p.id === personId);
+        response.json(personInfo);
+    } else {
+        response.status(400).end();
+    }
 });
 
 // initialize application
