@@ -1,3 +1,5 @@
+type Operation = "multiply" | "add" | "divide";
+
 const multiplicator = (a: number, b: number, printText: string) => {
     console.log(printText, a * b);
 };
