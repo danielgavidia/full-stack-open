@@ -1,4 +1,4 @@
-type Operation = "multiply" | "add" | "divide";
+type OperationCalculator = "multiply" | "add" | "divide";
 type Result = string | number;
 
 const calculator = (a: number, b: number, op: Operation): Result => {
@@ -15,7 +15,11 @@ const calculator = (a: number, b: number, op: Operation): Result => {
 
 console.log(calculator(2, 2, "divide"));
 
-const calculatorImproved = (a: number, b: number, op: Operation): number => {
+const calculatorImproved = (
+    a: number,
+    b: number,
+    op: OperationCalculator
+): number => {
     switch (op) {
         case "multiply":
             return a * b;
